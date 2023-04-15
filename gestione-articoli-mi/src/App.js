@@ -5,9 +5,13 @@ import LoginForm from './components/loginForm';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <LoginForm></LoginForm>
-      </header>
+      {/* <header className="App-header">
+      </header> */}
+      <LoginForm></LoginForm>
+      {/* <Routes>
+        <Route></Route>
+      </Routes> */}
+
 
     </div>
   );
