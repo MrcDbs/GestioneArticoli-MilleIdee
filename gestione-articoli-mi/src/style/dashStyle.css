@@ -1,7 +1,19 @@
 .main-b {
     /* border: 1px solid darkblue; */
     padding: 10px;
-    margin: 10px;
-    border-radius: 15px;
-    background-color: rgb(11, 11, 125);
+    border-top: 1.5px solid rgb(2, 2, 92);
+    /* margin: 10px; */
+    /* border-radius: 15px; */
+    /* background-color: rgb(37, 49, 123); */
+    /* background-color: rgb(237, 237, 231); */
+}
+
+.lista {
+
+    padding-left: 25px;
+}
+
+.b-logout {
+    margin-right: 15px;
+    /* margin-bottom: 15px; */
 }

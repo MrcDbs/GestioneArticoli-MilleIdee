@@ -5,6 +5,7 @@ import { addArticolo, getArticoli } from '../api/Fetch';
 const FormInserimento = (props) => {
 
     const [articolo, setArticolo] = useState({
+        id: null,
         descrizione: '',
         quantita: '',
         prezzo: '',
@@ -12,9 +13,24 @@ const FormInserimento = (props) => {
         data_inserimento: null
     });
 
+    useEffect(() => {
+        console.log('CATEGORIA NELLO USE EFFECT ', articolo.categoria);
+    }, [articolo]);
+
+    const [categorie, setCategorie] = useState([
+        { name: "N/A", value: "" },
+        { name: "Merceria", value: "Merceria" },
+        { name: "Lana", value: "Lana" },
+        { name: "Filati", value: "Filati" },
+        { name: "Intimo", value: "Intimo" },
+        { name: "Tessuti", value: "Tessuti" }
+    ])
+
     const handleFillArticolo = (event) => {
+        console.log('SELECT ' + event.target.name + ' ' + event.target.value, event);
         event.preventDefault();
-        setArticolo((articolo) => ({ ...articolo, [event.target.id]: event.target.value }));
+        setArticolo((articolo) => ({ ...articolo, [event.target.name]: event.target.value }));
+        console.log('CATEGORIA DOPO SELECT ', articolo.categoria);
     };
 
     const addArt = () => {
@@ -52,6 +68,7 @@ const FormInserimento = (props) => {
                 </FormControl>
                 <FormControl fullWidth margin="normal" style={{ marginBottom: "25px" }}>
                     <TextField
+                        type="number"
                         label="Quantità(Cm/Pz)"
                         id="quantita"
                         required={true}
@@ -61,6 +78,7 @@ const FormInserimento = (props) => {
                 </FormControl>
                 <FormControl fullWidth margin="normal" style={{ marginBottom: "25px" }}>
                     <TextField
+                        type="number"
                         label="Prezzo"
                         id="prezzo"
                         required={true}
@@ -69,19 +87,24 @@ const FormInserimento = (props) => {
                     </TextField>
                 </FormControl>
                 <FormControl fullWidth margin="normal" style={{ marginBottom: "25px" }}>
-                    <InputLabel>Categoria</InputLabel>
+                    <InputLabel id="categoria">Categoria</InputLabel>
                     <Select
+                        name="categoria"
                         value={articolo.categoria}
-                        onChange={(e) => handleFillArticolo(e)}
-                        label="Categoria"
                         variant="standard"
+                        onChange={(event) => handleFillArticolo(event)}
                     >
-                        <MenuItem value=""><em>N/A</em></MenuItem>
+                        {categorie.map((cat) => (
+                            <MenuItem key={cat.name} value={cat.value}>
+                                {cat.name}
+                            </MenuItem>
+                        ))}
+                        {/* <MenuItem value=""><em>N/A</em></MenuItem>
                         <MenuItem value="merceria">Merceria</MenuItem>
                         <MenuItem value="lana">Lana</MenuItem>
                         <MenuItem value="filati">Filati</MenuItem>
                         <MenuItem value="intimo">Intimo</MenuItem>
-                        <MenuItem value="tessuti">Tessuti</MenuItem>
+                        <MenuItem value="tessuti">Tessuti</MenuItem> */}
                     </Select>
                 </FormControl>
                 <FormControl fullWidth sx={{ mx: "auto" }}>

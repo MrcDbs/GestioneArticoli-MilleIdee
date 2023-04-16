@@ -10,7 +10,7 @@ import {
     Typography,
     Box,
     Grid, Paper,
-    Divider, Card, CardActionArea, CardContent
+    Divider, FormControl, Button
 } from '@mui/material';
 import ListaArticoli from './ListaArticoli';
 import FormInserimento from './FormInserimento';
@@ -29,7 +29,14 @@ const Dashboard = (props) => {
 
     // }, [props.listaArticoli]);
 
-    // useEffect(() => { }, [props.totaleGiornaliero]);
+    useEffect(() => {
+        getArticoli().then(res => {
+            //console.log('LISTA INIZIALE ', res);
+            setListaArticoli(res.data);
+        }).catch(error => {
+            console.log('ERRORE retrieve CON STATUS ', error);
+        });
+    }, []);
     const style = {
         position: 'absolute',
         top: '50%',
@@ -42,6 +49,7 @@ const Dashboard = (props) => {
         p: 4,
     };
     const [open, setOpen] = useState(false);
+    const [listaArticoli, setListaArticoli] = useState([]);
     // const [articolo, setArticolo] = useState({
     //     descrizione: '',
     //     quantita: '',
@@ -56,7 +64,9 @@ const Dashboard = (props) => {
     // })
 
 
-
+    const addArticoloToList = (art) => {
+        listaArticoli.push(art);
+    }
 
 
 
@@ -70,26 +80,37 @@ const Dashboard = (props) => {
 
     return (
         <>
-            <h1 style={{ color: "darkblue" }}>Gestione Articoli</h1>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h1 style={{
+                    color: "darkblue", flex: 1,
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}>Gestione/Tracciamento Articoli - Mille Idee</h1>
+                <FormControl sx={{ margin: '15px' }} >
+                    <Button variant="contained">Log Out</Button>
+                </FormControl>
+                {/* <button className='btn btn-primary b-logout'>Log Out</button> */}
+                {/* <a href="#">Log out</a> */}
+            </div >
             <div className="main-b">
 
                 <Box>
                     <Grid container spacing={2}>
                         <Grid item xs={12} className="dashText">
-                            <h1 style={{ color: "white", fontSize: "60px", fontFamily: "Helvetica" }}>
+                            <h1 style={{ color: "#636569", fontSize: "60px", fontFamily: "Helvetica" }}>
                                 DASHBOARD
                             </h1>
                         </Grid>
-                        <Grid container spacing={12} >
-                            <Grid item xs={1} ></Grid>
-                            <Grid item xs={5} >
+                        <Grid container spacing={12} className="lista">
+                            {/* <Grid item xs={1} ></Grid> */}
+                            <Grid item xs={8} >
                                 <Paper elevation={4} style={{ minHeight: "300px", padding: "30px" }}>
                                     <ListaArticoli
-                                        listaArticoli={props.listaArticoli} />
+                                        listaArticoli={listaArticoli} />
                                 </Paper>
 
                             </Grid>
-                            <Grid item xs={1} ></Grid>
+                            {/* <Grid item xs={1} ></Grid> */}
                             <Grid item xs={4}>
                                 <Divider orientation="vertical" flexItem />
                                 <Paper elevation={4} style={{ minHeight: "300px", padding: "30px", borderRadius: "15px" }}>
@@ -99,13 +120,13 @@ const Dashboard = (props) => {
 
                                 </Paper>
                             </Grid>
-                            <Grid item xs={1} ></Grid>
+                            {/* <Grid item xs={1} ></Grid> */}
 
                         </Grid>
                     </Grid>
                 </Box>
-                <div><h2>Totale Giornaliero: {props.totaleGiornaliero.totale} - {props.totaleGiornaliero.data}</h2>
-                </div>
+                {/* <div><h2>Totale Giornaliero: {props.totaleGiornaliero.totale} - {props.totaleGiornaliero.data}</h2>
+                </div> */}
                 <Modal
                     open={open}
                     onClose={onClose}

@@ -17,7 +17,7 @@ const LoginForm = (props) => {
         data: null
     })
 
-    const [listaArticoli, setListaArticoli] = useState([]);
+    // const [listaArticoli, setListaArticoli] = useState([]);
 
     useEffect(() => { console.log('User 3 ', username) }, [username]);
     const gestisciCredenziali = (event) => {
@@ -36,10 +36,11 @@ const LoginForm = (props) => {
     const logout = () => {
         setLoggedIn(false);
     }
-    const addArticoloToList = (art) => {
-        listaArticoli.push(art);
-    }
+    // const addArticoloToList = (art) => {
+    //     listaArticoli.push(art);
+    // }
     const submitLogin = () => {
+        //setLoggedIn(true);
         console.log('Login ', { username, password });
         //console.log(user);
         login({ username, password })
@@ -49,12 +50,12 @@ const LoginForm = (props) => {
                     password: ''
                 });
                 console.log('FA IL LOGIN ');
-                getArticoli().then(res => {
-                    //console.log('LISTA INIZIALE ', res);
-                    setListaArticoli(res.data);
-                }).catch(error => {
-                    console.log('ERRORE retrieve CON STATUS ', error);
-                });
+                // getArticoli().then(res => {
+                //     //console.log('LISTA INIZIALE ', res);
+                //     setListaArticoli(res.data);
+                // }).catch(error => {
+                //     console.log('ERRORE retrieve CON STATUS ', error);
+                // });
                 //props.loggedIn();
                 setLoggedIn(true);
                 console.log('RESPONSE ' + res.status + ' ', res);
@@ -83,8 +84,8 @@ const LoginForm = (props) => {
                 </form><hr /></div> : <></>}
             <br />
             {loggedIn ? <Dashboard
-                listaArticoli={listaArticoli}
-                addArticoloToList={addArticoloToList}
+                // listaArticoli={listaArticoli}
+                // addArticoloToList={addArticoloToList}
                 logout={logout}
                 totaleGiornaliero={totaleGiornaliero}
                 setTotaleGiornaliero={setTotaleGiornaliero}></Dashboard> : <></>}
