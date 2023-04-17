@@ -92,7 +92,10 @@ const ListaArticoli = (props) => {
     return (
         <>
             <Box>
-                <h2 style={{ color: 'darkblue', fontSize: '30px' }}>Lista Articoli</h2>
+                <div style={{ textAlign: 'left' }}>
+                    <h2 style={{ color: '#636569', fontSize: '30px' }}>Lista Articoli</h2>
+                </div>
+
                 <Box>
                     {/* <Pagination count={10} color="primary" style={{ marginBottom: '5px', justifyContent: 'right' }} /> */}
 

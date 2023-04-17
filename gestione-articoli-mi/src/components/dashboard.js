@@ -64,9 +64,9 @@ const Dashboard = (props) => {
     // })
 
 
-    const addArticoloToList = (art) => {
-        listaArticoli.push(art);
-    }
+    // const addArticoloToList = (art) => {
+    //     listaArticoli.push(art);
+    // }
 
 
 
@@ -84,7 +84,8 @@ const Dashboard = (props) => {
                 <h1 style={{
                     color: "darkblue", flex: 1,
                     display: 'flex',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    marginTop: '20px'
                 }}>Gestione/Tracciamento Articoli - Mille Idee</h1>
                 <FormControl sx={{ margin: '15px' }} >
                     <Button variant="contained">Log Out</Button>
@@ -104,7 +105,7 @@ const Dashboard = (props) => {
                         <Grid container spacing={12} className="lista">
                             {/* <Grid item xs={1} ></Grid> */}
                             <Grid item xs={8} >
-                                <Paper elevation={4} style={{ minHeight: "300px", padding: "30px" }}>
+                                <Paper elevation={5} style={{ minHeight: "300px", padding: "30px" }}>
                                     <ListaArticoli
                                         listaArticoli={listaArticoli} />
                                 </Paper>
@@ -113,7 +114,7 @@ const Dashboard = (props) => {
                             {/* <Grid item xs={1} ></Grid> */}
                             <Grid item xs={4}>
                                 <Divider orientation="vertical" flexItem />
-                                <Paper elevation={4} style={{ minHeight: "300px", padding: "30px", borderRadius: "15px" }}>
+                                <Paper elevation={5} style={{ minHeight: "300px", padding: "30px", borderRadius: "15px" }}>
                                     <h1 style={{ color: "darkblue", textAlign: "center" }}>Inserisci nuovo articolo</h1>
                                     <Divider />
                                     <FormInserimento />

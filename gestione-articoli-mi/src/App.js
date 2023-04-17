@@ -12,8 +12,8 @@ function App() {
       {/* <LoginForm></LoginForm> */}
       <BrowserRouter>
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/" element={<LoginForm />}></Route>
+          <Route path="/GestioneArticoli-MilleIdee/dashboard" element={<Dashboard />}></Route>
+          <Route path="/GestioneArticoli-MilleIdee" element={<LoginForm />}></Route>
         </Routes>
       </BrowserRouter>
 
