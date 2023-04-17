@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/GestioneArticoli-MilleIdee/static/css/main.29a5a8ea.css",
-    "main.js": "/GestioneArticoli-MilleIdee/static/js/main.ba955619.js",
+    "main.js": "/GestioneArticoli-MilleIdee/static/js/main.623ec240.js",
     "static/js/787.a63ba005.chunk.js": "/GestioneArticoli-MilleIdee/static/js/787.a63ba005.chunk.js",
     "static/media/logo.svg": "/GestioneArticoli-MilleIdee/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/GestioneArticoli-MilleIdee/index.html",
     "main.29a5a8ea.css.map": "/GestioneArticoli-MilleIdee/static/css/main.29a5a8ea.css.map",
-    "main.ba955619.js.map": "/GestioneArticoli-MilleIdee/static/js/main.ba955619.js.map",
+    "main.623ec240.js.map": "/GestioneArticoli-MilleIdee/static/js/main.623ec240.js.map",
     "787.a63ba005.chunk.js.map": "/GestioneArticoli-MilleIdee/static/js/787.a63ba005.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.29a5a8ea.css",
-    "static/js/main.ba955619.js"
+    "static/js/main.623ec240.js"
   ]
 }
