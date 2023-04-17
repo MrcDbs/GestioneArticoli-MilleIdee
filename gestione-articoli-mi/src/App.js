@@ -10,15 +10,12 @@ function App() {
       {/* <header className="App-header">
       </header> */}
       {/* <LoginForm></LoginForm> */}
-      <HashRouter>
-        <Routes>
-          <Route path="/GestioneArticoli-MilleIdee/dashboard" element={<Dashboard />}></Route>
-          <Route path="/GestioneArticoli-MilleIdee" element={<LoginForm />}></Route>
-        </Routes>
-      </HashRouter>
 
-
-    </div>
+      <Routes>
+        <Route path="/" element={<LoginForm />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+      </Routes>
+    </div >
   );
 }
 
