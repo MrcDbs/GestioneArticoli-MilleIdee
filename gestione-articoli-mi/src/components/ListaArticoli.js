@@ -28,23 +28,36 @@ const ListaArticoli = (props) => {
         setPage(0);
     };
     useEffect(() => {
-        getArticoli().then(res => {
-            console.log('USE EFFECT DASHBOARD');
-            props.setListaArticoli(res.data);
-            setListaPerPage(props.listaArticoli.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
-            console.log('LISTA PER PAGE ', listaPerPage);
-            //props.setTotaleGiornaliero((totaleGiornaliero) => ({ ...totaleGiornaliero, totale: getTotal(res.//data) }));
-            console.log('TOTALE GIORN  ', props.totaleGiornaliero.totale);
-        }).catch(error => {
-            console.log('ERRORE CON STATUS ', error.status);
-        });
+        setListaPerPage(props.listaArticoli.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+        // getArticoli().then(res => {
+        //     console.log('USE EFFECT DASHBOARD');
+        //     props.setListaArticoli(res.data);
+        //     setListaPerPage(res.data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+        //     console.log('LISTA PER PAGE ', listaPerPage);
+        //     //props.setTotaleGiornaliero((totaleGiornaliero) => ({ ...totaleGiornaliero, totale: getTotal(res.//data) }));
+        //     console.log('TOTALE GIORN  ', props.totaleGiornaliero.totale);
+        // }).catch(error => {
+        //     console.log('ERRORE CON STATUS ', error.status);
+        // });
 
     }, [props.listaArticoli]);
     useEffect(() => {
         setListaPerPage(props.listaArticoli.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
-        console.log('LISTA PER PAGE ', listaPerPage);
+        // getArticoli().then(res => {
+        //     console.log('USE EFFECT DASHBOARD 1');
+        //     props.setListaArticoli(res.data);
+        //     setListaPerPage(res.data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+        //     console.log('LISTA PER PAGE ', listaPerPage);
+        //     //props.setTotaleGiornaliero((totaleGiornaliero) => ({ ...totaleGiornaliero, totale: getTotal(res.//data) }));
+        //     console.log('TOTALE GIORN  ', props.totaleGiornaliero.totale);
+        // }).catch(error => {
+        //     console.log('ERRORE CON STATUS ', error.status);
+        // });
+    }, []);
+    useEffect(() => {
+        setListaPerPage(props.listaArticoli.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
     }, [page]);
-    useEffect(() => { }, [listaPerPage]);
+    useEffect(() => { }, [page]);
 
     const openModal = () => {
         setOpen(true);
@@ -66,13 +79,15 @@ const ListaArticoli = (props) => {
                             <TableCell>Prezzo&nbsp;(euro)</TableCell>
                             <TableCell>Categoria</TableCell>
                             <TableCell>Data Inserimento</TableCell>
-                            <TableCell colspan="2">Azioni</TableCell>
+                            <TableCell colSpan="2">Azioni</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {listaPerPage?.map((entry, index) => (
 
                             <TableRow
+
+                                hover={true}
                                 key={index + 1}>
                                 <TableCell component="th" scope="row">{entry.id}</TableCell>
                                 <TableCell>{entry.descrizione}</TableCell>
@@ -94,21 +109,24 @@ const ListaArticoli = (props) => {
             <Box>
                 <div style={{ textAlign: 'left' }}>
                     <h2 style={{ color: '#636569', fontSize: '30px' }}>Lista Articoli</h2>
+                    <h2 style={{ color: '#636569', fontSize: '20px' }}>Totale: 123.90</h2>
                 </div>
 
-                <Box>
-                    {/* <Pagination count={10} color="primary" style={{ marginBottom: '5px', justifyContent: 'right' }} /> */}
-
+                <Box sx={{ verticalAlign: 'middle', borderTop: '1px solid lightgrey' }}>
+                    {/* <TableRow> */}
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 40]}
+                        component="div"
+                        count={props.listaArticoli.length}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        rowsPerPage={rowsPerPage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    // classes={{ toolbar: 'nav' }}
+                    />
+                    {/* </TableRow> */}
                 </Box>
-                <TablePagination
-                    rowsPerPageOptions={[10, 25, 40]}
-                    component="div"
-                    count={props.listaArticoli.length}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    rowsPerPage={rowsPerPage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
+
                 <Divider />
             </Box>
             {showList()}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { login, register, getArticoli } from '../api/Fetch';
 import Dashboard from './dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = (props) => {
 
@@ -15,7 +16,8 @@ const LoginForm = (props) => {
     const [totaleGiornaliero, setTotaleGiornaliero] = useState({
         totale: 0,
         data: null
-    })
+    });
+    const navigate = useNavigate();
 
     // const [listaArticoli, setListaArticoli] = useState([]);
 
@@ -34,7 +36,9 @@ const LoginForm = (props) => {
     }
 
     const logout = () => {
-        setLoggedIn(false);
+        // localStorage.clear();
+        // navigate('/GestioneArticoli-MilleIdee');
+        //setLoggedIn(false);
     }
     // const addArticoloToList = (art) => {
     //     listaArticoli.push(art);
@@ -57,8 +61,12 @@ const LoginForm = (props) => {
                 //     console.log('ERRORE retrieve CON STATUS ', error);
                 // });
                 //props.loggedIn();
-                setLoggedIn(true);
+                //setLoggedIn(true);
+                const token = res.data.accessToken;
+                localStorage.setItem('token', token);
                 console.log('RESPONSE ' + res.status + ' ', res);
+                navigate('/GestioneArticoli-MilleIdee/dashboard');
+
             })
             .catch(error => {
                 console.log('ERRORE CON STATUS ', error);
@@ -67,7 +75,7 @@ const LoginForm = (props) => {
     return (
         <>
             {!loggedIn ? <div><h1>Accedi</h1>
-                <form>
+                <form class="form" style={{ border: '2px solid darkgrey', padding: '15px' }}>
                     <label>Username</label>
                     <br />
                     <input type="text" id="username" value={username} onChange={(event) => gestisciCredenziali(event)} />

@@ -3,6 +3,7 @@ import './App.css';
 import LoginForm from './components/loginForm';
 import Dashboard from './components/dashboard';
 import { Routes, Route, BrowserRouter, HashRouter } from 'react-router-dom';
+import PrivateRoute from './util/PrivateRoute';
 
 function App() {
   return (
@@ -10,12 +11,15 @@ function App() {
       {/* <header className="App-header">
       </header> */}
       {/* <LoginForm></LoginForm> */}
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
+          <Route element={<PrivateRoute />}>
+            <Route path="/GestioneArticoli-MilleIdee/dashboard" element={<Dashboard />}></Route>
+          </Route>
           <Route path="/GestioneArticoli-MilleIdee" element={<LoginForm />}></Route>
-          <Route path="/GestioneArticoli-MilleIdee/dashboard" element={<Dashboard />}></Route>
+
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </div >
   );
 }

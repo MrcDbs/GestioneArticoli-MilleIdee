@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+  /* background-color: rgb(79, 94, 136); */
+  background-color: rgb(65, 80, 122);
 }
 
 .App-logo {

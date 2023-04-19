@@ -5,13 +5,13 @@ import axios from 'axios';
 
 
 const apiFetch = axios.create({
-    baseURL: 'http://localhost:3001'
+    baseURL: 'http://localhost:2000'
 });
 
-const REGISTER_URL = '/user/register';
-const LOGIN_URL = '/user/login';
-const ADD_ARTICOLO = '/addArticolo';
-const GET_ARTICOLI = '/getArticoli';
+const REGISTER_URL = '/api/gestione/register';
+const LOGIN_URL = '/api/gestione/login';
+const ADD_ARTICOLO = '/api/gestione/addArticolo';
+const GET_ARTICOLI = '/api/gestione/getArticoli';
 
 export const login = async (param) => {
     let res = await apiFetch.post(LOGIN_URL, param);
