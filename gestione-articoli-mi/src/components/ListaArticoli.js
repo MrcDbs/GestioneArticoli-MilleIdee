@@ -25,7 +25,9 @@ const ListaArticoli = (props) => {
 
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
+        if (page != 0)
+            setPage(0);
+
     };
     useEffect(() => {
         setListaPerPage(props.listaArticoli.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
@@ -43,21 +45,18 @@ const ListaArticoli = (props) => {
     }, [props.listaArticoli]);
     useEffect(() => {
         setListaPerPage(props.listaArticoli.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
-        // getArticoli().then(res => {
-        //     console.log('USE EFFECT DASHBOARD 1');
-        //     props.setListaArticoli(res.data);
-        //     setListaPerPage(res.data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
-        //     console.log('LISTA PER PAGE ', listaPerPage);
-        //     //props.setTotaleGiornaliero((totaleGiornaliero) => ({ ...totaleGiornaliero, totale: getTotal(res.//data) }));
-        //     console.log('TOTALE GIORN  ', props.totaleGiornaliero.totale);
-        // }).catch(error => {
-        //     console.log('ERRORE CON STATUS ', error.status);
-        // });
     }, []);
+
     useEffect(() => {
         setListaPerPage(props.listaArticoli.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
     }, [page]);
     useEffect(() => { }, [page]);
+
+    useEffect(() => {
+        console.log('rows per PAGE ', rowsPerPage);
+        setListaPerPage(props.listaArticoli.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+    }, [rowsPerPage]);
+    // useEffect(() => { }, []);
 
     const openModal = () => {
         setOpen(true);

@@ -21,7 +21,7 @@ const LoginForm = (props) => {
 
     // const [listaArticoli, setListaArticoli] = useState([]);
 
-    useEffect(() => { console.log('User 3 ', username) }, [username]);
+    useEffect(() => { console.log(username) }, [username]);
     const gestisciCredenziali = (event) => {
         //console.log(event.target.value);
         if (event.target.id === 'username') {
@@ -65,7 +65,14 @@ const LoginForm = (props) => {
                 const token = res.data.accessToken;
                 localStorage.setItem('token', token);
                 console.log('RESPONSE ' + res.status + ' ', res);
-                navigate('/GestioneArticoli-MilleIdee/dashboard');
+                console.log('USERNAME ', res.data.user.username);
+                navigate('/GestioneArticoli-MilleIdee/dashboard', {
+                    state: {
+                        username: res.data.user.username,
+                        name: res.data.user.name,
+                        lastname: res.data.user.lastname
+                    }
+                });
 
             })
             .catch(error => {
@@ -74,13 +81,13 @@ const LoginForm = (props) => {
     }
     return (
         <>
-            {!loggedIn ? <div><h1>Accedi</h1>
+            {!loggedIn ? <div><h1 style={{ color: 'white' }}>Accedi</h1>
                 <form class="form" style={{ border: '2px solid darkgrey', padding: '15px' }}>
-                    <label>Username</label>
+                    <label style={{ color: 'white', fontSize: '23px' }}>Username</label>
                     <br />
                     <input type="text" id="username" value={username} onChange={(event) => gestisciCredenziali(event)} />
                     <br />
-                    <label>Password</label>
+                    <label style={{ color: 'white', fontSize: '23px' }}>Password</label>
                     <br />
                     <input type="password" id="password" value={password} onChange={(event) => gestisciCredenziali(event)} />
                     <br />

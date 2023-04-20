@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/dashStyle.css';
 import * as Icon from 'react-bootstrap-icons';
 import { getTotal } from '../util/utils';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
     Modal,
     Typography,
@@ -29,7 +29,14 @@ const Dashboard = (props) => {
     //     });
 
     // }, [props.listaArticoli]);
+    const location = useLocation();
     const navigate = useNavigate();
+
+    const user = {
+        username: location.state.username,
+        name: location.state.name,
+        lastname: location.state.lastname
+    }
 
     useEffect(() => {
         getArticoli().then(res => {
@@ -125,10 +132,13 @@ const Dashboard = (props) => {
                 }}>  <h1 style={{
                     color: "white",
                 }}>Gestione - Tracciamento Articoli | Mille Idee</h1></div>
-                <Tooltip title={'Anna Maria Bonacci'}><Avatar sx={{ width: '56px', height: '56px' }} {...stringAvatar('Anna Maria Bonacci')} /></Tooltip>
+                <div style={{ paddingTop: '15px' }}>
+                    <Tooltip title={user.name + ' ' + user.lastname}><Avatar sx={{ width: '56px', height: '56px' }} {...stringAvatar(user.name + ' ' + user.lastname)} /></Tooltip>
+                </div>
                 <FormControl sx={{ margin: '15px' }} >
                     <Button variant="contained" onClick={logout}>Log Out</Button>
                 </FormControl>
+
                 {/* <button className='btn btn-primary b-logout'>Log Out</button> */}
                 {/* <a href="#">Log out</a> */}
             </div >
