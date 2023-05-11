@@ -1,12 +1,27 @@
 import axios from 'axios';
 
-
-
-
-
 const apiFetch = axios.create({
     baseURL: 'http://localhost:2000'
 });
+// const authApiFetch = axios.create({
+//     baseURL: 'http://localhost:2000',
+//     headers: {
+//         Authorization: `Bearer ${token}`,
+//     },
+// });
+
+// THIS ADD HEADERS TOKEN TO ALL REQUESTS
+// axios.interceptors.request.use(
+//     config => {
+//     config.headers.authorization = `Bearer ${token}`;
+//     return config;
+//     },
+//     error => {
+//         return Promise.reject(error);
+//     }
+// )
+
+
 
 const REGISTER_URL = '/api/gestione/register';
 const LOGIN_URL = '/api/gestione/login';
@@ -23,8 +38,9 @@ export const register = async (param) => {
     return res;
 }
 
-export const addArticolo = async (param) => {
-    let res = await apiFetch.post(ADD_ARTICOLO, param);
+export const addArticolo = async (token, param) => {
+    const headers = { Authorization: `Bearer ${token}` };
+    let res = await apiFetch.post(ADD_ARTICOLO, headers, param);
     return res;
 }
 

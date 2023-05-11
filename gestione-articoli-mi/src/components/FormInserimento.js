@@ -37,21 +37,27 @@ const FormInserimento = (props) => {
         //setArticolo((articolo) => ({ ...articolo, data_inserimento: new Date() }));
         articolo.data_inserimento = new Date();
         console.log('ARTICOLO ', articolo);
-        addArticolo(articolo)
-            .then(res => {
-                props.addArticoloToList(res.data);
-                setArticolo({
-                    descrizione: '',
-                    quantita: '',
-                    prezzo: '',
-                    categoria: '',
-                    data_inserimento: null
+        const token = localStorage.getItem('token');
+        if (token !== null || token !== undefined) {
+            addArticolo(token, articolo)
+                .then(res => {
+                    props.addArticoloToList(res.data);
+                    setArticolo({
+                        descrizione: '',
+                        quantita: '',
+                        prezzo: '',
+                        categoria: '',
+                        data_inserimento: null
+                    });
+                    console.log('RESPONSE ' + res.status + ' ', res);
+                })
+                .catch(error => {
+                    console.log('ERRORE CON STATUS ', error.status);
                 });
-                console.log('RESPONSE ' + res.status + ' ', res);
-            })
-            .catch(error => {
-                console.log('ERRORE CON STATUS ', error.status);
-            });
+        } else {
+            //showErrorModal();
+        }
+
     }
 
     const getFormView = () => {
